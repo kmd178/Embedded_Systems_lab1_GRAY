@@ -2,8 +2,8 @@
 !*.v
 !*.pdf
 !*.png
-!*.bit
 !*.xdc
+!*.bit
 !*.xpr
 !*.docx
 !*.xise

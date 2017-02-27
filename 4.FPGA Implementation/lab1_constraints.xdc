@@ -262,7 +262,7 @@ set_property PACKAGE_PIN P16 [get_ports rst]
 #NET XADC_AD8N_R   LOC = D17;  # "XADC-AD8N-R"
 #NET XADC_AD8P_R   LOC = D16;  # "XADC-AD8P-R"
 
-
+#100mHz clock = 10ns period
 create_clock -period 10.000 -name clk -waveform {0.000 5.000} [get_ports clk -filter direction==in]
 
 
