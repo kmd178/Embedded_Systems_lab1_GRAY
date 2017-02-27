@@ -1,16 +1,5 @@
- /*                                -
- -----------------------------------------------------------------------------
- -----------------------------------------------------------------------------
- -- File           : TB1_Gray.v
- -----------------------------------------------------------------------------
- -- Description    : Verilog testbench for Gray_4bits
- -- --------------------------------------------------------------------------
- -- --------------------------------------------------------------------------
- */
- 
 `timescale 1ns/1ps
-`define cycle 10   // this is equivalent to defines in C
-
+`define cycle 10   
 module TB4;
   parameter N = 4;
   parameter distance = 1000;  //
@@ -22,7 +11,8 @@ module TB4;
   parameter ONE = 1'b1; 
    reg [N-1:0] leds_expected[0:15];
 	/* {4'h0, 4'h1, 4'h3, 4'h2, 4'h6, 4'h7, 4'h5, 4'h4,
-                                 4'hC, 4'hD, 4'hF, 4'hE, 4'hA, 4'hB, 4'h9, 4'h8}; */						 
+                                 4'hC, 4'hD, 4'hF, 4'hE, 4'hA, 4'hB, 4'h9, 4'h8}; */
+                                 					 
   // Drive the reset and the EndOfSimulation signal
    initial 
      begin
@@ -41,12 +31,11 @@ module TB4;
 	 
   // Drive the clock 
   always 
-    begin
       # (`cycle/2) clk = ~clk;
-    end
 	
- 
-  // Instantiate the System in the testbench
+  // Instantiate the System in the testbench  //Module #(params) InstanceName (...inputs&ouputs...)
   GrayCounter_System #(N, distance) System(.clk(clk), .rst(rst), .leds(leds));
   
 endmodule
+
+
