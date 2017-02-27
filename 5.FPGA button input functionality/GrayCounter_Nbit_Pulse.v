@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 // Description: This FSM converts an input level signal to a single-cycle pulse. 
 module GrayCounter_Pulse(input clk, input rst, input level, output reg pulse);
 
@@ -13,18 +13,28 @@ module GrayCounter_Pulse(input clk, input rst, input level, output reg pulse);
       begin
 			case(state)
 				S0:
-						begin
-							
-						end
+							if(level)
+							     begin
+                                     nextstate=S2;
+                                     pulse=1;
+                                 end
+							else
+							     nextstate=S1;
 				S1:
-						begin
-							
-						end
+							if(level)
+							     begin
+                                     nextstate=S2;
+                                     pulse=1;
+                                 end
+							else
+							     nextstate=S0;
 				S2:
 						begin
-							
+						    pulse=0;
+							if(!level)
+							     nextstate=S0;
 						end
-				default: 
+				default: pulse=0;
 			endcase
       end
 	  
