@@ -1,3 +1,4 @@
+`timescale 1ns / 100ps
 module gray_Nbits (clk, clk_en, rst, gray_out);
   parameter N = 4; //Number of bits used for the Gray Counter
   input clk,clk_en,rst;
