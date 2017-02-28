@@ -8,19 +8,12 @@ module gray_Nbits (clk, clk_en, rst, gray_out);
   integer n,j;
   
   // The state of the Gray counter
-  always @(posedge clk, negedge rst)
+  always @(posedge clk, posedge rst)
     begin
-	     if (rst == 1'b0)
-		    state<= 1<<N; // Initialize state with 1000..00
+	     if (rst == 1'b1)
+		    state <= 1<<N; // Initialize state with 1000..00
 	     else
-	       begin
-	        state[0]<=(toggle[0])? (!state[0]) : (state[0]); // Main part of code
-	        state[1]<=(toggle[1])? (!state[1]) : (state[1]); 
-	        for  (n=2 ; n<=N ; n=n+1)
-	           begin
-	               state[n]<=(toggle[n])? (!state[n]) : (state[n]); 
-	           end
-	       end      
+	       state<= toggle^state;   
 	 end
 
   // The combinational logic produces the toggle[N:0] signals
