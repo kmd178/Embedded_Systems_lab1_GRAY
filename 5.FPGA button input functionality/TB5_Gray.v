@@ -24,7 +24,7 @@ module TB5;
           rst = 1'b0;
           button=1;
 			 # (5*`cycle)
-          rst = 1'b1;
+          rst = 1'b0;
           	 # (5*`cycle)
           button=0;
              # (5*`cycle)
@@ -55,6 +55,10 @@ module TB5;
           button=1;
              # (5*`cycle)
         button=0;
+            # (8097152*`cycle)
+         button=1;
+         # (8097152*`cycle)
+         button=0;
           EndOfSimulation = 1;
 	       # (2*`cycle)
 	       $finish;

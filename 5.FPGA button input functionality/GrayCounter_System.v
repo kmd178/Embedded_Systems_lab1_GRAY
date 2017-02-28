@@ -9,9 +9,9 @@ module GrayCounter_System(clk, rst,button, leds);
     
   debounce debounce1(clk,rst,button,stabilized_button);
     
-  GrayCounter_Pulse SecondPulse (clk, rst,stabilized_button, pulse);// Instantiation of the GrayCounter_Pulse 
+  //GrayCounter_Pulse SecondPulse (clk, rst,stabilized_button, pulse);// Instantiation of the GrayCounter_Pulse 
  
-  gray_Nbits Counter(pulse, 1'b0 , rst, leds);// Instantiation of the gray_Nbits 
+  gray_Nbits Counter(stabilized_button, 1'b0 , rst, leds);// Instantiation of the gray_Nbits 
 
 
 endmodule

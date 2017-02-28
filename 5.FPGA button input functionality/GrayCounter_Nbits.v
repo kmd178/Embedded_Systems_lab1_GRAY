@@ -10,7 +10,7 @@ module gray_Nbits (clk, clk_en, rst, gray_out);
   // The state of the Gray counter
   always @(posedge clk, posedge rst)
     begin
-	     if (rst == 1'b1)
+	     if (rst)
 		    state<= 1<<N; // Initialize state with 1000..00
 	     else
 	       state<= toggle^state;   

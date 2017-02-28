@@ -7,18 +7,18 @@ module debounce( clk,reset,button,stabilized_button);
 		input clk;
 		input reset;
 		input button;
-		output reg stabilized_button=0;
+		output reg stabilized_button=0; //not 0??
 		//carefull
 		reg [19:0] clk_count=1'b0;  //(Depending on the FPGA system used.) For a 100mhz clock (period=10^-8) and for a 10ms delay, 20bits give the required 2^20cycles.(0.01048576seconds)
 		wire check; ////ClockDividing using AND: When clk_hits 2^20 clock periods CHECK will give me a posedge
-		reg saved_button_state;
-		reg [1:0] current_state;
+		reg saved_button_state;   //=0;
+		reg [1:0] current_state;  //=0;
 		 
-		always @(posedge clk, posedge reset) 
+		always @(posedge clk) //posedge reset) 
 			begin
-			        if(reset)
-			           clk_count<=0;
-			        else 
+			        //if(reset)
+			        //   clk_count<=0;
+			        //else 
 					   clk_count<=clk_count+ 1'b1;
 			end
 			
@@ -27,11 +27,13 @@ module debounce( clk,reset,button,stabilized_button);
 		//if the clock of the FPGA is 10mhz then 1048576 cycles equal a worst case of a 4*0.1048576seconds delay, 
 		//making it necessary to be pressing the button for that much time to make an effect//////
 		
+
+		
 		always @(posedge check, posedge reset) 
 			begin
 				if (reset)
 						begin 
-						current_state<=2'b00;
+						current_state<=2'b00;  //00
 						saved_button_state<=button; //button
 						stabilized_button<=1'b0;  //A different module is utilized for Buttons than the Reset button  
 						//itself in order for the system to regain partial functionality in the a case of a shortcircuited o
@@ -72,6 +74,7 @@ module debounce( clk,reset,button,stabilized_button);
 											end 
 						endcase
 				end
+				
 		end
 		
 endmodule
