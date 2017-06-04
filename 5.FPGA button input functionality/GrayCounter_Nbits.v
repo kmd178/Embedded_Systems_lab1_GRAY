@@ -1,7 +1,8 @@
 `timescale 1ns / 100ps
-module gray_Nbits (clk, clk_en, rst, gray_out);
+module gray_Nbits (clk_input, clk_en, rst, gray_out);
   parameter N = 4; //Number of bits used for the Gray Counter
-  input clk,clk_en,rst;
+  input clk_input,clk_en,rst;
+  wire clk = clk_input*clk_en;
   output [N-1:0] gray_out; //Output Gray Counter
   reg [N:0] state=0;
   reg [N:0] toggle;
